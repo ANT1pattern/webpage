@@ -65,11 +65,11 @@ const helpText = `
 Available commands:
 
 help - This output
-services - Prints our service offers
+about - Prints information about ANT1pattern
 team - Shows team member
+service - Prints our services
 references - Display latest projects
 contact - show contact options
-contact <key> - Display latest projects
 clear - Clears the display
 `;
 
@@ -90,6 +90,7 @@ const serviceInfo = {
   develop: "We develop Apps, Smart Contracts, Backends and Bots.",
   quality: "We ensure quality through test of apps and smart contracts on different levels.",
   devops: "We love rapid prototyping with continious deployments.",
+  scale: "We set the right focus regarding your budget."
 }
 
 const teamInfo = {
@@ -100,11 +101,52 @@ const teamInfo = {
 };
 
 const serviceDetailInfo = {
-  agile: ``,
-  consult: `
+  agile: `
+We are a team which is focused on agile development. Our Principles are:
+
+1. Customer satisfaction by early and continuous delivery of valuable software.
+2. Welcome changing requirements, even in late development.
+3. Deliver working software frequently (weeks rather than months)
+4. Close, daily cooperation between business people and developers
+5. Projects are built around motivated individuals, who should be trusted
+6. Face-to-face conversation is the best form of communication (co-location)
+7. Working software is the primary measure of progress
+8. Sustainable development, able to maintain a constant pace
+9. Continuous attention to technical excellence and good design
+10. Simplicity—the art of maximizing the amount of work not done—is essential
+11. Best architectures, requirements, and designs emerge from self-organizing teams
+12. Regularly, the team reflects on how to become more effective, and adjusts accordingly
+
+We understand that disruptive blockchain projects can not be preocesed as a normal software project. 
+
+With this understanding and the knowledge and experience as project manager. We are the best choice if you look for a scrum master.
   `,
-  develop: ``,
-  test: ``,
+  consult: `
+
+  
+  `,
+  develop: `
+Smart Contracts
+
+WebApps
+
+Bots
+
+Shell scripts
+
+every you need and want
+  
+`,
+  quality: `  
+We develop for each individual projects its own quality assurance strategy.
+
+Typically those exist of:
+
+- Quality assured through experienced based development process
+- Code Reviews and Audits (Smart Contracts, Apps)
+- Testing on different levels (unit, integrationtests, e2e, security, performance)
+
+  `,
   devops: ``,
 
 
@@ -228,7 +270,7 @@ const openTeam = key => {
   return teamDetailInfo[key]
 }
 const openService = key => {
-  return serviceInfo[key]
+  return serviceDetailInfo[key]
 }
 
 
