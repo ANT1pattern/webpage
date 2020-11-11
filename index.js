@@ -164,7 +164,7 @@ Bots
 
 Shell scripts
 
-every you need and want
+everything you need and want
   
 `,
   quality: `  
