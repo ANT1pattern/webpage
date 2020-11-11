@@ -60,6 +60,36 @@ Type 'help for a list of available commands.
 
 `;
 
+const refInfo = {
+  "Knockout Finance (ongoing)": {
+    url: "https://github.com/ANT1pattern/knockout.finance",
+    description: "more infos coming soon..."
+  },
+  "Lisk Ren Protocol Bridge (ongoing)": {
+    url: "https://github.com/ANT1pattern/multichain",
+    description: "A decentralized bridge between Lisk and Ethereum based on Ren Protocol. (impl)"
+  },
+  "ant1pattern Webpage (done)": {
+    url: "https://github.com/ANT1pattern/webpage",
+    description: "This Webpage. (impl, test, devops)"
+  },
+  "CTHU-Coin (done)": {
+    url: "https://github.com/cthu-coin/Cthulhu_Soul",
+    description: "Ethereum Game (project setup, tests)"
+  },
+};
+
+const refList = Object.keys(refInfo)
+  .reduce((result, key) => result.concat([`${key} - ${refInfo[key].description} `]), [])
+  .join('\n');
+const refText = `
+
+References
+
+${ refList}
+
+`;
+
 // Help text
 const helpText = `
 Available commands:
@@ -68,7 +98,7 @@ help - This output
 about - Prints information about ANT1pattern
 team - Shows team member
 service - Prints our services
-references - Display latest projects
+ref - Display references
 contact - show contact options
 clear - Clears the display
 `;
@@ -86,10 +116,10 @@ const contactInfo = {
 
 const serviceInfo = {
   agile: "We provide the scrum master and develop the project agile.",
-  consult: "We guide you through the project and show you best practices and possible risks.",
-  develop: "We develop Apps, Smart Contracts, Backends and Bots.",
-  quality: "We ensure quality through test of apps and smart contracts on different levels.",
-  devops: "We love rapid prototyping with continious deployments.",
+  // consulting: "We guide you through the project and show you best practices and possible risks.",
+  development: "We develop Apps, Smart Contracts, Backends and Bots.",
+  // quality: "We ensure quality through testing of apps and smart contracts on different levels.",
+  devops: "We do the operations.",
   scale: "We set the right focus regarding your budget."
 }
 
@@ -125,7 +155,7 @@ With this understanding and the knowledge and experience as project manager. We 
 
   
   `,
-  develop: `
+  development: `
 Smart Contracts
 
 WebApps
@@ -147,7 +177,18 @@ Typically those exist of:
 - Testing on different levels (unit, integrationtests, e2e, security, performance)
 
   `,
-  devops: ``,
+  devops: `
+  
+  DevOps
+
+  - Deployment Scripts for Smart Contracts
+  - CICD Pipelines for your DApp
+  
+  `,
+
+  scale: `
+    @TODO: rob1
+  `
 
 
 }
@@ -201,6 +242,7 @@ Roles:
    |  | \\/(  <_> )| \\_\\ \\|   |
    |__|    \\____/ |___  /|___|
                       \\/   
+- father
 - studied informatics
 - into p2p since bittorrent (2004)
 - into bitcoin since 2014
@@ -255,7 +297,7 @@ Services
 
 ${ serviceList}
 
-Use ex. 'service develop' to open further details.
+Use ex. 'service development' to open further details.
 `;
 
 const teamText = `
@@ -263,7 +305,7 @@ Team member
 
 ${ teamList}
 
-Use ex. 'team tosh1' to open further detailss.
+Use ex. 'team tosh1' to open further details.
 `;
 
 const openTeam = key => {
@@ -273,6 +315,7 @@ const openService = key => {
   return serviceDetailInfo[key]
 }
 
+const openRef = key => window.open(contactInfo[key].url);
 
 const openContact = key => window.open(key === 'email'
   ? `mailto: ${contactInfo[key]} `
@@ -373,12 +416,12 @@ const load = () => {
         }
         return teamText
       },
-      references: (key) => {
+      ref: (key) => {
         if (key in refInfo) {
-          openContact(key);
+          openRef(key);
           return `Opening ${key} - ${refInfo[key]}`;
         }
-        return referenceText
+        return refText
       },
       clear: () => t.clear(),
       contact: (key) => {
